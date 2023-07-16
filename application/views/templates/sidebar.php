@@ -46,6 +46,10 @@
             <i class="fas fa-fw fa-table"></i>
             <span>Periode</span>
         </a>
+        <a class="nav-link" href="<?php echo base_url('api/todo/') ?>">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Todo</span>
+        </a>
     </li>
     <div class="sidebar-heading">
         LOGOUT

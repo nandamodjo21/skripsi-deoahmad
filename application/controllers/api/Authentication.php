@@ -34,6 +34,7 @@ class Authentication extends REST_Controller
                     'data' => $cek
                 ], REST_Controller::HTTP_OK);
         } else {
+            return
             $this->response([
                 'status' => false,
                 'message' => 'No users were found'
@@ -41,26 +42,26 @@ class Authentication extends REST_Controller
         }
     }
 
-    public function register_post()
-    {
-        $query = array(
-            'username' => $this->post('username'),
-            'password' => md5($this->post('password')),
-            'role' => "admin"
-        );
+    // public function register_post()
+    // {
+    //     $query = array(
+    //         'username' => $this->post('username'),
+    //         'password' => md5($this->post('password')),
+    //         'role' => "admin"
+    //     );
 
-        $data = $this->db->insert('users', $query);
-        if ($data) {
-            return
-                $this->response([
-                    'status' => true,
-                    'message' => 'Successfuly',
-                ], REST_Controller::HTTP_OK);
-        } else {
-            $this->response([
-                'status' => false,
-                'message' => 'Can not insert user'
-            ], REST_Controller::HTTP_NOT_FOUND);
-        }
-    }
+    //     $data = $this->db->insert('users', $query);
+    //     if ($data) {
+    //         return
+    //             $this->response([
+    //                 'status' => true,
+    //                 'message' => 'Successfuly',
+    //             ], REST_Controller::HTTP_OK);
+    //     } else {
+    //         $this->response([
+    //             'status' => false,
+    //             'message' => 'Can not insert user'
+    //         ], REST_Controller::HTTP_NOT_FOUND);
+    //     }
+    // }
 }
