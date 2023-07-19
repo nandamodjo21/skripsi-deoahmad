@@ -9,6 +9,8 @@ class Materi extends CI_Controller
         parent::__construct();
 
         $this->load->model('M_materi');
+        $this->load->helper('url');
+        $this->load->library('curl');
     }
 
 
@@ -36,25 +38,36 @@ class Materi extends CI_Controller
     public function proses_tambah_data()
     {
         $m = $this->input->post('materi');
+        $apiurl = 'http://localhost:8089/api/upload';
         $config['upload_path'] = './uploads/'; // Tentukan direktori penyimpanan file
         $config['allowed_types'] = 'pdf|doc|docx'; // Jenis file yang diizinkan (dalam contoh ini, PDF, DOC, dan DOCX)
         $config['min_size'] = 2048; // Ukuran maksimum file dalam kilobita
         $this->load->library('upload', $config);
 
+
         //kondisi upload
         if ($this->upload->do_upload('userfile')) {
             // Jika upload berhasil, lakukan sesuatu seperti menyimpan data ke database atau menampilkan pesan sukses
             $file = $this->upload->data();
+            $file_path = $file['full_path'];
             $nama_file = $file['file_name'];
             $data = array(
                 'materi' => $m,
-                'file_materi' => $nama_file
+                'file_materi' => new CURLFile($file_path, 'application/pdf', $nama_file)
             );
-            $this->M_materi->proses_tambah_data($data,'t_materi');
+           
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $apiurl);
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $response = curl_exec($ch);
+            curl_close($ch);
+
+            echo $response;
             $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert"> Berhasil Menambahkan Materi</div>');
             redirect('materi');
 
-            echo "File berhasil diunggah: " . $data['file_name'];
         } else {
             // Jika upload gagal, tampilkan pesan error
             $error = $this->upload->display_errors();
