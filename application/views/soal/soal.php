@@ -32,7 +32,7 @@
                             <td><?php echo $no++; ?></td>
                             <td><?php echo $sl['materi']; ?></td>
                             <td><?php echo $sl['soal']; ?></td>
-                            <td><?php echo $sl['date_created']; ?></td>
+                            <td><?php echo $sl['tanggal']; ?></td>
                             <td><?php echo $sl['status']; ?></td>
                             <td>
                                 <button type="button" class="badge badge-primary" data-toggle="modal"

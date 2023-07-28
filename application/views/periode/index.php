@@ -13,7 +13,6 @@
                      <thead>
                          <tr>
                              <td>No</td>
-                             <td>Id Periode</td>
                              <td>Id prodi</td>
                              <td>Mulai Periode</td>
                              <td>Selesai Periode</td>
@@ -27,14 +26,10 @@
                             foreach ($t_periode as $pd) : ?>
                          <tr>
                              <td><?php echo $no++; ?></td>
-                             <td><?php echo $pd['id_periode']; ?></td>
-                             <td><?php echo $pd['id_prodi']; ?></td>
+                             <td><?php echo $pd['prodi']; ?></td>
                              <td><?php echo $pd['mulai_periode']; ?></td>
                              <td><?php echo $pd['selesai_periode']; ?></td>
                              <td><?php echo $pd['status_periode']; ?></td>
-                             <td>
-
-                             </td>
                          </tr>
 
 

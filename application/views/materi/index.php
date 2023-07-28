@@ -18,6 +18,7 @@
                             <td>No</td>
                             <td>Soal</td>
                             <td>Modul</td>
+                            <td>File</td>
                             <td>Aksi</td>
                         </tr>
                     </thead>
@@ -30,6 +31,10 @@
                             <td><?php echo $no++; ?></td>
                             <td><?php echo $tm['materi']; ?></td>
                             <td><?= $tm['file_materi'];?></td>
+                            <td>
+                                <a href="<?= base_url('uploads/'. $tm['file_materi'])?>"
+                                    target="_blank"><?=$tm['file_materi'];?></a>
+                            </td>
                             <td>
                                 <button type="button" class="badge badge-primary" data-toggle="modal"
                                     data-target="#editmodal<?php echo $tm['id_materi'];?>">

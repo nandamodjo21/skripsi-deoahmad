@@ -1,10 +1,11 @@
  <!-- Footer -->
  <div>
      <div>
-         <footer class="sticky-footer bg-white">
+         <footer class="sticky-footer bg-gradient-success accordion">
              <div class="container my-auto">
                  <div class="copyright text-center my-auto">
-                     <span>Copyright &copy; Your Website 2020</span>
+                     <span class="text-white justify-content-center">Copyright &copy; Buku Saku
+                         <?= date('D,d-m-Y'); ?></span>
                  </div>
              </div>
          </footer>

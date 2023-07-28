@@ -2,7 +2,7 @@
 <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
@@ -46,10 +46,7 @@
             <i class="fas fa-fw fa-table"></i>
             <span>Periode</span>
         </a>
-        <a class="nav-link" href="<?php echo base_url('api/todo/') ?>">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Todo</span>
-        </a>
+
     </li>
     <div class="sidebar-heading">
         LOGOUT

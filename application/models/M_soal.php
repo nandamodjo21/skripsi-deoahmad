@@ -5,7 +5,7 @@ class M_soal extends CI_Model
 {
     public function SemuaData()
     {
-       return $this->db->query("select s.*,m.materi from t_soal s
+       return $this->db->query("select s.id_soal,s.soal,DATE_FORMAT(s.date_created,'%d-%m-%Y') AS tanggal,s.status,m.materi from t_soal s
        , t_materi m 
        where m.id_materi=s.id_materi;")->result_array();
     }
@@ -15,6 +15,7 @@ class M_soal extends CI_Model
         
             "id_materi" => $this->input->post('materi'),
             "soal" => $this->input->post('soal'),
+            
             "status" => $this->input->post('status')
 
         ];
