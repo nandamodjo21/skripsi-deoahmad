@@ -15,7 +15,7 @@ class Objektif extends CI_Controller {
     {
         $data['title'] = 'Halaman Data objektif';
         $data['t_objektif'] = $this->M_objektif->SemuaData();
-        $data['soal'] = $this->M_objektif->SemuaSoal();
+        // $data['soal'] = $this->M_objektif->SemuaSoal();
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
         $this->load->view('templates/topbar');   
@@ -32,10 +32,10 @@ class Objektif extends CI_Controller {
         redirect('objektif');
     }
 
-    public function hapus_data($id_objektif)
+    public function hapus_data($id_jawaban)
     {
-        $this->M_objektif->hapus_data($id_objektif);
-        $this->session->set_flashdata('pesan' , '<div class="alert alert-success" role="alert"> objektif Telah Berhasil Di Hapus!</div>');
+        $this->M_objektif->hapus_data($id_jawaban);
+        $this->session->set_flashdata('pesan' , '<div class="alert alert-success" role="alert"> jawaban Telah Berhasil Di Hapus!</div>');
         redirect('objektif');
     }
 
