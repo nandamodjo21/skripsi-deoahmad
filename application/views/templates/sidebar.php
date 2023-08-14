@@ -15,10 +15,36 @@
 
     <!-- Nav Item - Dashboard -->
 
-
+    <div class="sidebar-heading">
+        Dashboard
+    </div>
+    <li class="nav-item">
+        <a class="nav-link" href="<?php echo base_url('home/') ?>">
+            <i class="fas fa-fw fa-home"></i>
+            <span>Home</span>
+        </a>
+    </li>
     <!-- Divider -->
     <hr class="sidebar-divider">
-
+    <div class="sidebar-heading">
+        MASTERS
+    </div>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
+            aria-controls="collapsePages">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Master Data</span>
+        </a>
+        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="<?php echo base_url('mahasiswa/') ?>">MASTER MAHASISWA</a>
+                <a class="collapse-item" href="<?php echo base_url('biodata') ?>">MASTER BIODATA</a>
+                <a class="collapse-item" href="<?php echo base_url('login/') ?>">MASTER USER</a>
+                <a class="collapse-item" href="<?php echo base_url('prodi/') ?>">MASTER PRODI</a>
+            </div>
+        </div>
+    </li>
+    <hr class="sidebar-divider">
     <!-- Heading -->
     <div class="sidebar-heading">
         Interface
@@ -47,7 +73,10 @@
             <span>Periode</span>
         </a>
 
+
+
     </li>
+    <hr class="sidebar-divider">
     <div class="sidebar-heading">
         LOGOUT
     </div>
