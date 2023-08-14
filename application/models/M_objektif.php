@@ -5,15 +5,7 @@ class M_objektif extends CI_Model
 {
     public function SemuaData()
     {
-        return $this->db->query("SELECT s.id_soal, s.soal, 
-    GROUP_CONCAT(o.objektif ORDER BY o.objektif SEPARATOR ',') AS objektif, 
-    GROUP_CONCAT(o.jawaban ORDER BY o.objektif SEPARATOR ',') AS jawaban
-FROM t_objektif o
-JOIN t_soal s ON s.id_soal = o.id_soal
-WHERE s.status='1'
-GROUP BY s.id_soal 
-ORDER BY s.id_soal, objektif;
-")->result_array();
+        return $this->db->query("SELECT j.id_jawaban, b.nama_lengkap,m.materi,s.soal,j.jawaban,DATE_FORMAT(s.created_at, '%d-%m-%Y %H:%i:%s') AS waktu_mulai, DATE_FORMAT(j.createt_at, '%d-%m-%Y %H:%i:%s') as waktu_selesai FROM `t_jawaban` j,t_login u,t_mahasiswa tm, t_biodata b, t_soal s, t_materi m WHERE u.id_login=j.id_user AND u.nim=tm.nim AND tm.id_biodata=b.id_biodata AND s.id_materi=m.id_materi ORDER BY j.id_jawaban ASC")->result_array();
     }
     
 
@@ -54,10 +46,10 @@ ORDER BY s.id_soal, objektif;
 
 
 
-    public function hapus_data($id_objektif)
+    public function hapus_data($id_jawaban)
     {
-        $this->db->where('id_soal', $id_objektif);
-        $this->db->delete('t_objektif');
+        $this->db->where('id_jawaban', $id_jawaban);
+        $this->db->delete('t_jawaban');
     }
 
     public function ambil_id_objektif($id_objektif)
