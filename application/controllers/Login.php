@@ -56,9 +56,11 @@ class Login extends CI_Controller{
                     ];
                     $this->session->set_userdata($data);
                     if ($user['id_role'] == 1) {
-                        redirect('materi');
+                       
+                        $this->session->set_flashdata('alert', 'Login Berhasil.');
+                        redirect('home');
                     } else if ($user['id_role'] == 2) {
-                        redirect('soal');
+                        redirect('home');
                     }
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Wrong password!</div>');
