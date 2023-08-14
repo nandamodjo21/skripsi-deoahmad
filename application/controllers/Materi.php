@@ -41,7 +41,7 @@ class Materi extends CI_Controller
         $apiurl = 'http://localhost:8089/api/upload';
         $config['upload_path'] = './uploads/'; // Tentukan direktori penyimpanan file
         $config['allowed_types'] = 'pdf|doc|docx'; // Jenis file yang diizinkan (dalam contoh ini, PDF, DOC, dan DOCX)
-        $config['min_size'] = 2048; // Ukuran maksimum file dalam kilobita
+        $config['min_size'] = 1048; // Ukuran maksimum file dalam kilobita
         $this->load->library('upload', $config);
 
 
