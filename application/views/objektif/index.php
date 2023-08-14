@@ -3,11 +3,7 @@
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Halaman Data Objektif
-                <button type="button" class="btn btn-primary float-right" data-toggle="modal"
-                    data-target="#exampleModal">
-                    Tambah Data
-                </button>
+            <h6 class="m-0 font-weight-bold text-primary">Halaman Data Jawaban
         </div>
         <div class="card-body">
             <?php echo $this->session->flashdata('pesan') ?>
@@ -16,9 +12,12 @@
                     <thead>
                         <tr>
                             <td>No</td>
+                            <td>Mahasiswa</td>
+                            <td>Materi</td>
                             <td>Soal</td>
-                            <td>Objektif</td>
                             <td>Jawaban</td>
+                            <td>Waktu Mulai</td>
+                            <td>Waktu Selesai</td>
                             <td>Aksi</td>
                         </tr>
                     </thead>
@@ -29,14 +28,16 @@
             foreach ($t_objektif as $tm) : ?>
                         <tr>
                             <td><?php echo $no++; ?></td>
-                            <td class="text-left"><?php echo $tm['soal']; ?></td>
-                            <td class="text-left"><?php echo $tm['objektif']; ?></td>
+                            <td><?= $tm['nama_lengkap'];?></td>
+                            <td><?= $tm['materi'];?></td>
+                            <td><?= $tm['soal'];?></td>
                             <td><?= $tm['jawaban']; ?>
                             </td>
+                            <td><?= $tm['waktu_mulai'];?></td>
+                            <td><?= $tm['waktu_selesai'];?></td>
                             <td>
-                                <button type="button" class="badge badge-primary" data-toggle="modal"
-                                    data-target="#editmodal<?php echo $tm['id_soal']; ?>">Edit</button>
-                                <a href="<?php echo base_url() ?>Objektif/hapus_data/<?php echo $tm['id_soal']; ?>"
+
+                                <a href="<?php echo base_url() ?>Objektif/hapus_data/<?php echo $tm['id_jawaban']; ?>"
                                     class="badge badge-danger">Hapus</a>
                             </td>
                         </tr>
@@ -62,7 +63,7 @@ Untuk tambah Data -->
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -108,7 +109,7 @@ Untuk tambah Data -->
                 $a++;
               }
               ?>
-                            <!-- tambahkan lebih banyak baris objektif dan jawaban jika diperlukan -->
+                            tambahkan lebih banyak baris objektif dan jawaban jika diperlukan
                         </table>
                     </div>
                 </div>
@@ -129,7 +130,7 @@ Untuk tambah Data -->
 <!-- Modal Untuk Edit -->
 <?php $no = 0;
 foreach ($t_objektif as $tm) : $no++; ?>
-<div class="modal fade" id="editmodal<?= $tm['id_soal']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
+<!-- <div class="modal fade" id="editmodal<?= $tm['id_soal']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -166,7 +167,7 @@ foreach ($t_objektif as $tm) : $no++; ?>
                 }
                 ?>
 
-                            <!-- tampilkan data objektif pada tabel -->
+                            tampilkan data objektif pada tabel
                             <table class="table">
                                 <thead>
                                     <tr>
@@ -200,7 +201,7 @@ foreach ($t_objektif as $tm) : $no++; ?>
 
         </div>
     </div>
-</div>
+</div> -->
 <?php endforeach; ?>
 
 <!-- Akhir Edit-->
