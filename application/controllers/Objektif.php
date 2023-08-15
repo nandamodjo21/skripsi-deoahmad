@@ -15,6 +15,7 @@ class Objektif extends CI_Controller {
     {
         $data['title'] = 'Halaman Data objektif';
         $data['t_objektif'] = $this->M_objektif->SemuaData();
+        $data['nilai'] = $this->M_objektif->nilai()->result_array();
         // $data['soal'] = $this->M_objektif->SemuaSoal();
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
@@ -48,5 +49,22 @@ class Objektif extends CI_Controller {
                                         objektif Telah Berhasil Di Edit!
                                         </div>');
         redirect('objektif');
+    }
+
+    public function nilai(){
+        $nilai = $this->input->post('nilai');
+        $id_jawaban = $this->input->post('id');
+
+        $data = [
+            'id_nilai' => $nilai
+        ];
+        $where = [
+            'id_jawaban' => $id_jawaban
+        ];
+
+        $this->M_objektif->updateData($where,$data,'t_jawaban');
+        $this->session->set_flashdata('pesan' , '<div class="alert alert-success" role="alert"> Berhasil memberikan nilai!</div>');
+        redirect('objektif');
+        
     }
 }
