@@ -5,7 +5,32 @@ class M_objektif extends CI_Model
 {
     public function SemuaData()
     {
-        return $this->db->query("SELECT j.id_jawaban, b.nama_lengkap,m.materi,s.soal,j.jawaban,DATE_FORMAT(s.created_at, '%d-%m-%Y %H:%i:%s') AS waktu_mulai, DATE_FORMAT(j.createt_at, '%d-%m-%Y %H:%i:%s') as waktu_selesai FROM `t_jawaban` j,t_login u,t_mahasiswa tm, t_biodata b, t_soal s, t_materi m WHERE u.id_login=j.id_user AND u.nim=tm.nim AND tm.id_biodata=b.id_biodata AND s.id_materi=m.id_materi ORDER BY j.id_jawaban ASC")->result_array();
+        return $this->db->query("SELECT
+        j.id_jawaban,
+        b.nama_lengkap,
+        m.materi,
+        s.soal,
+        j.jawaban,
+        COALESCE(n.nilai, 'belum dinilai') AS nilai,
+        DATE_FORMAT(s.created_at, '%d-%m-%Y %H:%i:%s') AS waktu_mulai,
+        DATE_FORMAT(j.createt_at, '%d-%m-%Y %H:%i:%s') as waktu_selesai
+    FROM
+        t_jawaban j
+    JOIN
+        t_login u ON u.id_login = j.id_user
+    JOIN
+        t_mahasiswa tm ON tm.nim = u.nim
+    JOIN
+        t_biodata b ON tm.id_biodata = b.id_biodata
+    JOIN
+        t_soal s ON s.id_soal = j.id_soal
+    JOIN
+        t_materi m ON s.id_materi = m.id_materi
+    LEFT JOIN
+        t_nilai n ON j.id_nilai = n.id_nilai
+    ORDER BY
+        j.id_jawaban ASC;
+    ")->result_array();
     }
     
 
@@ -83,4 +108,15 @@ class M_objektif extends CI_Model
             $this->db->update_batch('t_objektif', $data, $id);
         }
     }
+
+    public function nilai(){
+        return $this->db->get('t_nilai');
+    }
+
+    public function updateData($where,$data,$table){
+
+        $this->db->where($where);
+        $this->db->update($table,$data);
+
+         }
 }
