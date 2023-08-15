@@ -16,6 +16,7 @@
                             <td>Materi</td>
                             <td>Soal</td>
                             <td>Jawaban</td>
+                            <td>Nilai</td>
                             <td>Waktu Mulai</td>
                             <td>Waktu Selesai</td>
                             <td>Aksi</td>
@@ -31,14 +32,16 @@
                             <td><?= $tm['nama_lengkap'];?></td>
                             <td><?= $tm['materi'];?></td>
                             <td><?= $tm['soal'];?></td>
-                            <td><?= $tm['jawaban']; ?>
-                            </td>
+                            <td><?= $tm['jawaban'];?></td>
+                            <td><?= $tm['nilai'];?></td>
                             <td><?= $tm['waktu_mulai'];?></td>
                             <td><?= $tm['waktu_selesai'];?></td>
                             <td>
 
                                 <a href="<?php echo base_url() ?>Objektif/hapus_data/<?php echo $tm['id_jawaban']; ?>"
                                     class="badge badge-danger">Hapus</a>
+                                <a href="" data-toggle="modal" data-target="#nilaiModal<?php echo $tm['id_jawaban']; ?>"
+                                    class="badge badge-success">nilai</a>
                             </td>
                         </tr>
 
@@ -60,6 +63,49 @@
 <!-- Modal 
 Untuk tambah Data -->
 <!-- Button trigger modal -->
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary">
+    Launch demo modal
+</button>
+<?php
+foreach ($t_objektif as $tm) : ?>
+<!-- Modal -->
+<div class="modal fade" id="nilaiModal<?= $tm['id_jawaban']?>" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Beri Nilai</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="<?= base_url('objektif/nilai/'.$tm['id_jawaban']);?>" method="post">
+                    <div class="form-group">
+                        <input type="hidden" name="id" class="form-control" value="<?= $tm['id_jawaban']?>">
+                    </div>
+                    <div class="form-group">
+                        <select name="nilai" id="nilai" class="form-control">
+                            <option value="">Pilih</option>
+                            <?php foreach ($nilai as $m) { ?>
+                            <option value="<?= $m['id_nilai'] ?>"><?= $m['nilai']; ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div><?php endforeach;?>
+
+
 
 
 <!-- Modal -->
