@@ -42,12 +42,12 @@ class Login extends CI_Controller{
             'username' => $email
         );
 
-        $user = $this->db->get_where('t_login', $wr)->row_array();
+        $user = $this->db->get_where('t_user', $wr)->row_array();
 
         // jika usernya ada
         if ($user) {
             // jika usernya aktif
-            if ($user['is_active'] == 1) {
+            if ($user['status'] == 1) {
                 // cek password
                 if ($password['pass'] == $user['password']) {
                     $data = [
@@ -58,8 +58,6 @@ class Login extends CI_Controller{
                     if ($user['id_role'] == 1) {
                        
                         $this->session->set_flashdata('alert', 'Login Berhasil.');
-                        redirect('home');
-                    } else if ($user['id_role'] == 2) {
                         redirect('home');
                     }
                 } else {

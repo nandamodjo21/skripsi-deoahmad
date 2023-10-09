@@ -4,7 +4,7 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Halaman Data Materi
-                <button type="button" class="btn btn-primary float-right" data-toggle="modal"
+                <button type="button" class="btn btn-success float-right" data-toggle="modal"
                     data-target="#exampleModal">
                     Tambah Data
                 </button>
@@ -13,13 +13,12 @@
             <?php echo $this->session->flashdata('pesan') ?>
             <div class="table-responsive">
                 <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
+                    <thead class="bg-gradient-success">
                         <tr>
-                            <td>No</td>
-                            <td>Soal</td>
-                            <td>Modul</td>
-                            <td>File</td>
-                            <td>Aksi</td>
+                            <td class="text-white">No</td>
+                            <td class="text-white">Soal</td>
+                            <td class="text-white">Modul</td>
+                            <td class="text-white">Aksi</td>
                         </tr>
                     </thead>
 
@@ -30,7 +29,6 @@
                         <tr>
                             <td><?php echo $no++; ?></td>
                             <td><?php echo $tm['materi']; ?></td>
-                            <td><?= $tm['file_materi'];?></td>
                             <td>
                                 <a href="<?= base_url('uploads/'. $tm['file_materi'])?>"
                                     target="_blank"><?=$tm['file_materi'];?></a>

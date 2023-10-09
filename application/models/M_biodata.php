@@ -20,4 +20,10 @@ class M_biodata extends CI_Model
         $this->db->delete('t_biodata');
     }
 
+    public function getNim(){
+        return $this->db->query('SELECT * FROM t_biodata');
+    }
+
+   
+
 }

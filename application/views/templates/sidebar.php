@@ -38,8 +38,8 @@
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="<?php echo base_url('mahasiswa/') ?>">MASTER MAHASISWA</a>
-                <a class="collapse-item" href="<?php echo base_url('biodata') ?>">MASTER BIODATA</a>
-                <a class="collapse-item" href="<?php echo base_url('login/') ?>">MASTER USER</a>
+                <!-- <a class="collapse-item" href="<?php echo base_url('biodata') ?>">MASTER BIODATA</a> -->
+                <a class="collapse-item" href="<?php echo base_url('biodata/user') ?>">MASTER USER</a>
                 <a class="collapse-item" href="<?php echo base_url('prodi/') ?>">MASTER PRODI</a>
             </div>
         </div>
@@ -62,16 +62,16 @@
         </a>
         <a class="nav-link" href="<?php echo base_url('objektif/') ?>">
             <i class="fas fa-fw fa-table"></i>
-            <span>Objektif</span>
+            <span>Penilaian</span>
         </a>
-        <a class="nav-link" href="<?php echo base_url('proses_penilaian/') ?>">
+        <!-- <a class="nav-link" href="<?php echo base_url('proses_penilaian/') ?>">
             <i class="fas fa-fw fa-table"></i>
             <span>Proses penilaian</span>
-        </a>
-        <a class="nav-link" href="<?php echo base_url('periode/') ?>">
+        </a> -->
+        <!-- <a class="nav-link" href="<?php echo base_url('periode/') ?>">
             <i class="fas fa-fw fa-table"></i>
             <span>Periode</span>
-        </a>
+        </a> -->
 
 
 

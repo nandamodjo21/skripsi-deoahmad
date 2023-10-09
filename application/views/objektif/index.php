@@ -27,6 +27,7 @@
                         <?php
             $no = 1;
             foreach ($t_objektif as $tm) : ?>
+
                         <tr>
                             <td><?php echo $no++; ?></td>
                             <td><?= $tm['nama_lengkap'];?></td>
@@ -36,16 +37,21 @@
                             <td><?= $tm['nilai'];?></td>
                             <td><?= $tm['waktu_mulai'];?></td>
                             <td><?= $tm['waktu_selesai'];?></td>
+
+
                             <td>
+                                <?php if ($tm['nilai'] == 0) : ?>
+                                <a href="" data-toggle="modal" data-target="#nilaiModal<?php echo $tm['id_jawaban']; ?>"
+                                    class="badge badge-success">nilai</a>
+                                <?php endif; ?>
 
                                 <a href="<?php echo base_url() ?>Objektif/hapus_data/<?php echo $tm['id_jawaban']; ?>"
                                     class="badge badge-danger">Hapus</a>
-                                <a href="" data-toggle="modal" data-target="#nilaiModal<?php echo $tm['id_jawaban']; ?>"
-                                    class="badge badge-success">nilai</a>
+
                             </td>
+
+
                         </tr>
-
-
                         <?php endforeach; ?>
 
             </div>
@@ -66,9 +72,7 @@ Untuk tambah Data -->
 
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary">
-    Launch demo modal
-</button>
+
 <?php
 foreach ($t_objektif as $tm) : ?>
 <!-- Modal -->

@@ -11,7 +11,7 @@ class Biodata extends CI_Controller
     }
     public function index()
     {
-        $data['title'] = 'Halaman Data Periode';
+        $data['title'] = 'Halaman Data Master';
         $data['t_biodata'] = $this->M_biodata->SemuaData()->result_array();
         $data['jenis'] = $this->M_biodata->getJk()->result_array();
         $data['agama'] = $this->M_biodata->getAgama()->result_array();
@@ -47,4 +47,6 @@ class Biodata extends CI_Controller
         $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert"> Materi Telah Berhasil Di Hapus!</div>');
         redirect('biodata');
     }
+
+   
 }

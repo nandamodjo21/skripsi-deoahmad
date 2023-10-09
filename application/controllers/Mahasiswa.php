@@ -13,8 +13,8 @@ class Mahasiswa extends CI_Controller
     {
         $data['title'] = 'Halaman Data Mahasiswa';
         $data['t_mahasiswa'] = $this->M_mahasiswa->SemuaData()->result_array();
-        $data['biodata'] = $this->M_mahasiswa->getBiodata();
-        $data['prodi'] = $this->M_mahasiswa->getProdi();
+        $data['agama'] = $this->M_mahasiswa->agama()->result_array();
+        $data['jenis'] = $this->M_mahasiswa->jk()->result_array();
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
         $this->load->view('templates/topbar');
@@ -44,5 +44,37 @@ class Mahasiswa extends CI_Controller
         $this->M_mahasiswa->hapus_data($nim);
         $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert"> Data Telah Berhasil Di Hapus!</div>');
         redirect('mahasiswa');
+    }
+
+    public function editMahasiswa(){
+        $id = $this->input->post('idmhs');
+        $nim = $this->input->post('nim');
+        $nama = $this->input->post('nama');
+        $jk = $this->input->post('jk');
+        $agama = $this->input->post('agama');
+
+
+       $data = array(
+        'nim' => $nim,
+        'nama_lengkap' => $nama,
+        'jk' => $jk,
+        'agama' => $agama
+       );
+
+       $where = array(
+        'id_login' => $id
+       );
+
+       $this->M_mahasiswa->updateMhs($where,$data,'t_login');
+       $this->session->set_flashdata(
+        'pesan',
+        '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Oke Data Berhasil Di Ubah!</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>'
+    );
+    redirect('mahasiswa');
     }
 }

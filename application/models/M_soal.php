@@ -5,7 +5,7 @@ class M_soal extends CI_Model
 {
     public function SemuaData()
     {
-       return $this->db->query("select s.id_soal,s.soal,DATE_FORMAT(s.created_at,'%d-%m-%Y') AS tanggal,s.status,m.materi from t_soal s
+       return $this->db->query("select s.id_soal,s.soal,DATE_FORMAT(s.created_at,'%d-%m-%Y') AS tanggal,CASE when s.status = 0 then 'Tidak aktif' when s.status = 1 then 'Aktif' end as status ,m.materi from t_soal s
        , t_materi m 
        where m.id_materi=s.id_materi;")->result_array();
     }

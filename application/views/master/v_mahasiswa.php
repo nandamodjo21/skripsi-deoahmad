@@ -4,7 +4,7 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Halaman Data Mahasiswa
-                <button type="button" class="btn btn-primary float-right" data-toggle="modal"
+                <button type="button" class="btn btn-success float-right" data-toggle="modal"
                     data-target="#mahasiswaModal">
                     Tambah Data
                 </button>
@@ -13,14 +13,16 @@
             <?php echo $this->session->flashdata('pesan') ?>
             <div class="table-responsive">
                 <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
+                    <thead class="bg-gradient-success">
                         <tr>
-                            <td>No</td>
-                            <td>NIM</td>
-                            <td>Nama Mahasiswa</td>
-                            <td>Prodi</td>
-                            <td>Status</td>
-                            <td>Aksi</td>
+                            <td class="text-white">No</td>
+                            <td class="text-white">NIM</td>
+                            <td class="text-white">Nama Mahasiswa</td>
+                            <td class="text-white">Username</td>
+                            <td class="text-white">Jenis Kelamin</td>
+                            <td class="text-white">Agama</td>
+                            <td class="text-white">Status</td>
+                            <td class="text-white">Aksi</td>
                         </tr>
                     </thead>
 
@@ -32,16 +34,19 @@
                             <td><?php echo $no++; ?></td>
                             <td><?php echo $tm['nim']; ?></td>
                             <td><?php echo $tm['nama_lengkap']; ?></td>
-                            <td><?php echo $tm['prodi']; ?></td>
-                            <td><?php echo $tm['status_mhs']; ?></td>
+                            <td><?php echo $tm['username']; ?></td>
+                            <td><?php echo $tm['jenis_kelamin']; ?></td>
+                            <td><?php echo $tm['agama']; ?></td>
+                            <td><?php echo $tm['status']; ?></td>
+
                             <td>
                                 <button type="button" class="badge badge-primary" data-toggle="modal"
-                                    data-target="#editmodal<?php echo $tm['nim'];?>">
+                                    data-target="#editModal<?php echo $tm['id_login'];?>">
                                     Edit
                                 </button>
 
                                 <button type="button" class="badge badge-danger" data-toggle="modal"
-                                    data-target="#hapusmodal<?php echo $tm['nim'];?>">
+                                    data-target="#hapusmodal<?php echo $tm['id_login'];?>">
                                     Hapus
                                 </button>
 
@@ -69,7 +74,11 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="mahasiswaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<?php
+                    $no = 1;
+                foreach ($t_mahasiswa as $tm) : ?>
+<div class="modal fade" id="editModal<?= $tm['id_login']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -79,26 +88,33 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="<?= base_url('mahasiswa/addMahasiswa'); ?>" method="post">
+                <form action="<?= base_url('mahasiswa/editMahasiswa/'.$tm['id_login']); ?>" method="post">
 
 
                     <div class="form-group">
                         <lebel>NIM</lebel>
-                        <input type="text" name="nim" id="nim" class="form-control">
+                        <input type="hidden" name="idmhs" id="idmhs" class="form-control"
+                            value="<?= $tm['id_login']; ?>">
+                        <input type="text" name="nim" id="nim" class="form-control" value="<?= $tm['nim'];?>">
                     </div>
                     <div class="form-group">
-                        <select name="mahasiswa" id="mahasiswa" class="form-control">
-                            <option value="">Mahasiswa</option>
-                            <?php foreach($biodata as $b){ ?>
-                            <option value="<?= $b['id_biodata'] ?>"><?= $b['nama_lengkap']; ?></option>
+                        <lebel>Nama Mahasiswa</lebel>
+                        <input type="text" name="nama" id="nama" class="form-control"
+                            value="<?= $tm['nama_lengkap'];?>">
+                    </div>
+                    <div class="form-group">
+                        <select name="jk" id="jk" class="form-control">
+
+                            <?php foreach($jenis as $b){ ?>
+                            <option value="<?= $b['id_jk'] ?>"><?= $b['jenis_kelamin']; ?></option>
                             <?php } ?>
                         </select>
                     </div>
                     <div class="form-group">
-                        <select name="prodi" id="prodi" class="form-control">
-                            <option value="">Prodi</option>
-                            <?php foreach($prodi as $p){ ?>
-                            <option value="<?= $p['id_prodi'] ?>"><?= $p['prodi']; ?></option>
+                        <select name="agama" id="agama" class="form-control">
+
+                            <?php foreach($agama as $p){ ?>
+                            <option value="<?= $p['id_agama'] ?>"><?= $p['agama']; ?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -111,6 +127,8 @@
         </div>
     </div>
 </div>
+
+<?php endforeach; ?>
 
 </div>
 <!-- Akhir Modal -->
