@@ -5,7 +5,7 @@ class M_mahasiswa extends CI_Model
 {
 
     public function SemuaData(){
-        return $this->db->query("SELECT l.*, j.*,a.*, CASE WHEN l.status_mhs = 0 THEN 'tidak aktif' WHEN l.status_mhs = 1 THEN 'Aktif' END AS status  FROM `t_login` l, t_agama a, t_jenis_kelamin j WHERE a.id_agama=l.agama AND j.id_jk=l.jk;");
+        return $this->db->query("SELECT l.*, j.*,a.*, CASE WHEN l.status_mhs = 0 THEN 'tidak aktif' WHEN l.status_mhs = 1 THEN 'Aktif' END AS status  FROM `t_login` l, t_agama a, t_jenis_kelamin j WHERE a.id_agama=l.agama AND j.id_jk=l.jk");
     }
 
     public function getProdi(){
