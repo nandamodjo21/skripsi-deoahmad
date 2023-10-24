@@ -32,8 +32,32 @@
                             <td><?php echo $no++; ?></td>
                             <td><?= $tm['nama_lengkap'];?></td>
                             <td><?= $tm['materi'];?></td>
-                            <td><?= $tm['soal'];?></td>
-                            <td><?= $tm['jawaban'];?></td>
+                            <!-- Kolom Soal -->
+                            <td>
+                                <ol>
+                                    <?php
+        $soal = $tm['soal']; // Ambil teks soal dari $tm['soal']
+        $soalArray = explode("\r\n", $soal); // Split teks soal berdasarkan newline (\r\n)
+        foreach ($soalArray as $line) {
+            echo "<li>" . $line . "</li>"; // Menampilkan setiap baris soal sebagai elemen dalam ordered list
+        }
+        ?>
+                                </ol>
+                            </td>
+
+                            <!-- Kolom Jawaban -->
+                            <td>
+                                <ol>
+                                    <?php
+        $jawaban = $tm['jawaban']; // Ambil teks jawaban dari $tm['jawaban']
+        $jawabanArray = explode(",", $jawaban); // Split teks jawaban berdasarkan koma
+        foreach ($jawabanArray as $line) {
+            echo "<li>" . $line . "</li>"; // Menampilkan setiap baris jawaban sebagai elemen dalam ordered list
+        }
+        ?>
+                                </ol>
+                            </td>
+
                             <td><?= $tm['nilai'];?></td>
                             <td><?= $tm['waktu_mulai'];?></td>
                             <td><?= $tm['waktu_selesai'];?></td>
@@ -73,8 +97,7 @@ Untuk tambah Data -->
 
 <!-- Button trigger modal -->
 
-<?php
-foreach ($t_objektif as $tm) : ?>
+
 <!-- Modal -->
 <div class="modal fade" id="nilaiModal<?= $tm['id_jawaban']?>" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -94,9 +117,13 @@ foreach ($t_objektif as $tm) : ?>
                     <div class="form-group">
                         <select name="nilai" id="nilai" class="form-control">
                             <option value="">Pilih</option>
-                            <?php foreach ($nilai as $m) { ?>
-                            <option value="<?= $m['id_nilai'] ?>"><?= $m['nilai']; ?></option>
-                            <?php } ?>
+
+                            <option value="1">Sangat Baik</option>
+                            <option value="2">Baik</option>
+                            <option value="3">Cukup</option>
+                            <option value="4">Kurang</option>
+                            <option value="5">Sangat Kurang</option>
+
                         </select>
                     </div>
             </div>
@@ -107,7 +134,7 @@ foreach ($t_objektif as $tm) : ?>
             </div>
         </div>
     </div>
-</div><?php endforeach;?>
+</div>
 
 
 
