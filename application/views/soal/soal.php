@@ -12,7 +12,7 @@
         <div class="card-body">
             <?php echo $this->session->flashdata('pesan') ?>
             <div class="table-responsive">
-                <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <td>No</td>
@@ -31,7 +31,17 @@
                         <tr>
                             <td><?php echo $no++; ?></td>
                             <td><?php echo $sl['materi']; ?></td>
-                            <td><?php echo $sl['soal']; ?></td>
+                            <td>
+                                <ol>
+                                    <?php 
+        $soal = $sl['soal'];
+        $soalArray = explode("\n", $soal);
+        foreach ($soalArray as $line) {
+            echo "<li>" . $line . "</li>"; // Menampilkan setiap baris soal sebagai elemen dalam ordered list
+        }
+        ?>
+                                </ol>
+                            </td>
                             <td><?php echo $sl['tanggal']; ?></td>
                             <td><?php echo $sl['status']; ?></td>
                             <td>
@@ -92,9 +102,10 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <lebel>Soal</lebel>
-                        <input type="text" name="soal" class="form-control">
+                        <label for="soal">Pertanyaan</label>
+                        <textarea class="form-control" id="soal" name="soal" rows="3"></textarea>
                     </div>
+
 
                     <div class="form-group">
                         <select name="status" id="" class="form-control">
