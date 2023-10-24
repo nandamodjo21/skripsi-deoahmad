@@ -5,31 +5,10 @@ class M_objektif extends CI_Model
 {
     public function SemuaData()
     {
-        return $this->db->query("SELECT
-        j.id_jawaban,
-        b.nama_lengkap,
-        m.materi,
-        s.soal,
-        j.jawaban,
-        COALESCE(n.nilai, 'belum dinilai') AS nilai,
-        DATE_FORMAT(s.created_at, '%d-%m-%Y %H:%i:%s') AS waktu_mulai,
-        DATE_FORMAT(j.createt_at, '%d-%m-%Y %H:%i:%s') as waktu_selesai
-    FROM
-        t_jawaban j
-    JOIN
-        t_login u ON u.id_login = j.id_user
-    JOIN
-        t_mahasiswa tm ON tm.nim = u.nim
-    JOIN
-        t_biodata b ON tm.id_biodata = b.id_biodata
-    JOIN
-        t_soal s ON s.id_soal = j.id_soal
-    JOIN
-        t_materi m ON s.id_materi = m.id_materi
-    LEFT JOIN
-        t_nilai n ON j.id_nilai = n.id_nilai
-    ORDER BY
-        j.id_jawaban ASC;
+        return $this->db->query("SELECT j.id_jawaban,m.materi,s.soal,DATE_FORMAT(s.created_at, '%Y-%m-%d %H:%i:%s') AS waktu_mulai, l.nama_lengkap,j.jawaban, CASE
+        WHEN n.nilai IS NULL THEN 'belum di nilai'
+        ELSE n.nilai
+    END AS nilai, DATE_FORMAT(j.createt_at, '%Y-%m-%d %H:%i:%s') AS waktu_selesai FROM `t_jawaban` j LEFT JOIN t_soal s ON(j.id_soal=s.id_soal) LEFT JOIN t_materi m ON(s.id_materi=m.id_materi) LEFT JOIN t_nilai n ON(j.id_nilai=n.id_nilai) LEFT JOIN t_login l ON(j.id_user=l.id_login)
     ")->result_array();
     }
     
