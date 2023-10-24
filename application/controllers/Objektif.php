@@ -67,4 +67,22 @@ class Objektif extends CI_Controller {
         redirect('objektif');
         
     }
+    public function grafik(){
+
+        $data['title'] = 'Halaman Grafik';
+        $data['grafik'] = $this->M_objektif->SemuaData();
+
+        $this->load->view('templates/header',$data);
+        $this->load->view('templates/sidebar');
+        $this->load->view('templates/topbar');   
+        $this->load->view('objektif/grafik', $data);
+        $this->load->view('templates/footer');   
+
+    }
+
+    public function grafik_data(){
+        $data = $this->M_objektif->SemuaData();
+
+        echo json_encode($data);
+    }
 }
