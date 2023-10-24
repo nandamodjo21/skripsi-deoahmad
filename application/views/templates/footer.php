@@ -57,7 +57,11 @@
  <script src="<?php  echo base_url('files/');?>vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
  <!-- Page level custom scripts -->
- <script src="<?php  echo base_url('files/');?>js/demo/datatables-demo.js"></script>
+ <!-- <script src="<?php  echo base_url('files/');?>js/demo/datatables-demo.js"></script>
+ <script src="<?php  echo base_url('files/');?>vendor/chart.js/Chart.min.js"></script>
+
+ <!-- Page level custom scripts -->
+ <!-- <script src="<?php  echo base_url('files/');?>js/demo/chart-bar-demo.js"></script> -->
 
  </body>
 

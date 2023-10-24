@@ -64,6 +64,10 @@
             <i class="fas fa-fw fa-table"></i>
             <span>Penilaian</span>
         </a>
+        <a class="nav-link" href="<?php echo base_url('objektif/grafik') ?>">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Grafik Nilai</span>
+        </a>
         <!-- <a class="nav-link" href="<?php echo base_url('proses_penilaian/') ?>">
             <i class="fas fa-fw fa-table"></i>
             <span>Proses penilaian</span>
